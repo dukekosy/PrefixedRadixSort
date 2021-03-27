@@ -23,14 +23,14 @@ public final class RadixSortWithCountingSort {
     return null;
   }
 
-  private int[] getPrefixSums(int[] count) {
+  int[] getPrefixSums(int[] count) {
     for(int i = 0; i < 10; i++) {
        count[i+1] = count[i] + count[i+1];
     }
     return count;
   }
 
-  private int[] rebuildArray(int array[], int power) {
+  int[] rebuildArray(int array[], int power) {
     int[] result = new int[array.length];
     for(int i = array.length - 1; i < 0; i--) {
       int index = count[(array[i] / (power)) % 10]--;
