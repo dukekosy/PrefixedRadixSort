@@ -24,15 +24,6 @@ public final class RadixSortWithCountingSort {
     return unsorted;
   }
 
-  int[] getPrefixSums(int[] count) {
-    if (count.length != 10)
-      throw new InvalidParameterException("message");
-    for(int i = 0; i < 9; i++) {
-       count[i+1] = count[i] + count[i+1];
-    }
-    return count;
-  }
-
   int[] rebuildArraywithPrefixSum(int[] count, int array[], int power) {
     int[] result = new int[array.length];
     for(int i = array.length - 1; i >= 0; i--) {

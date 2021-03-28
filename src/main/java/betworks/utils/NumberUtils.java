@@ -1,5 +1,6 @@
-package betworks;
+package betworks.utils;
 
+import java.security.InvalidParameterException;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -9,13 +10,23 @@ import java.util.stream.IntStream;
 
 This question is meant to allow us to gauge your level of skill and understanding of programming best practices. Clearly let us know what assumptions you are making and why. As a hint, think about the types of things you would expect a Senior Developer to do in their answer, and go into the question with a level of depth and detail you’re comfortable with. Creating code that compiles and directly answers the questions asked is the minimum requirement.
 * */
-public class SortingAMillion {
+public class NumberUtils {
 
   //might need to make sure this is positive
   public static int[] getRandomIntegers(int streamSize) {
     Random r = new Random();
     IntStream instream =  r.ints(streamSize, 0, Integer.MAX_VALUE);
     return instream.toArray();
+  }
+
+
+  public static int[] getPrefixSums(int[] count) {
+    if (count.length != 10)
+      throw new InvalidParameterException("message");
+    for(int i = 0; i < 9; i++) {
+      count[i+1] = count[i] + count[i+1];
+    }
+    return count;
   }
 
 

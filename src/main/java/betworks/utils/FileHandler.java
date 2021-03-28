@@ -1,4 +1,4 @@
-package betworks;
+package betworks.utils;
 
 public class FileHandler {
 
