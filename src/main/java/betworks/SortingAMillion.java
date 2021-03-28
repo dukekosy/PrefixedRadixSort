@@ -12,9 +12,9 @@ This question is meant to allow us to gauge your level of skill and understandin
 public class SortingAMillion {
 
   //might need to make sure this is positive
-  private static int[] getRandomIntegers(int streamSize) {
+  public static int[] getRandomIntegers(int streamSize) {
     Random r = new Random();
-    IntStream instream =  r.ints(streamSize);
+    IntStream instream =  r.ints(streamSize, 0, Integer.MAX_VALUE);
     return instream.toArray();
   }
 
