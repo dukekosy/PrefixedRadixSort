@@ -2,7 +2,7 @@ package betworks.utils;
 
 import betworks.RadixSortWithCountingSort;
 import org.junit.After;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +11,9 @@ import java.util.Arrays;
 
 public class NumberUtilsTest {
 
+    public static final int STREAM_SIZE = 1000000;
+    public static final int[] TEST_PREFIX = new int[]{0, 2, 1, 2, 1, 2, 2, 3, 2, 1};
+    public static final int[] RESULTANT_PREFIX = new int[]{0, 2, 3, 5, 6, 8, 10, 13, 15, 16};
 
     @Before
     public void setup() {
@@ -22,14 +25,19 @@ public class NumberUtilsTest {
     }
 
     @Test
+    public void getRandomIntegers_checkArraySize_true() {
+        assertTrue(NumberUtils.getRandomIntegers(STREAM_SIZE).length  == STREAM_SIZE);
+    }
+
+    @Test
     public void getPrefixSums_successful() {
-        Assert.assertArrayEquals(new int[]{0, 2, 3, 5, 6, 8, 10, 13, 15, 16},
-                NumberUtils.getPrefixSums(new int[]{0, 2, 1, 2, 1, 2, 2, 3, 2, 1}));
+        assertArrayEquals(RESULTANT_PREFIX,
+                NumberUtils.getPrefixSums(TEST_PREFIX));
     }
 
     @Test(expected = InvalidParameterException.class)
     public void getPrefixSums_ifArrayEmpty_throwException() {
-        Assert.assertArrayEquals(new int[]{}, NumberUtils.getPrefixSums(new int[]{}));
+        assertArrayEquals(new int[]{}, NumberUtils.getPrefixSums(new int[]{}));
     }
 
     @Test(expected = InvalidParameterException.class)
