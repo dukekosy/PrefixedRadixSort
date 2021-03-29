@@ -1,5 +1,6 @@
 package betworks;
 
+import betworks.utils.NumberUtils;
 import java.security.InvalidParameterException;
 
 public final class RadixSortWithCountingSort {
@@ -18,7 +19,7 @@ public final class RadixSortWithCountingSort {
       for(int j = 0; j < unsorted.length; j++) {
         count[(unsorted[j] / (power)) % 10]++;
       }
-      count = getPrefixSums(count);
+      count = NumberUtils.getPrefixSums(count);
       unsorted = rebuildArraywithPrefixSum(count, unsorted, power);
     }
     return unsorted;

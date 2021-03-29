@@ -43,14 +43,9 @@ public class RadixSortWithCountingSortTest {
   public void radixSort_testfor1M_successful() {
     int[] array = Arrays.stream(NumberUtils.getRandomIntegers(1000000)).toArray();
     radixSortWithCountingSort = new RadixSortWithCountingSort(array);
-    Assert.assertTrue(checkAscending(radixSortWithCountingSort.radixSort()));
+    Assert.assertTrue(NumberUtils.checkNumbersAscending(radixSortWithCountingSort.radixSort()));
   }
 
-  private boolean checkAscending(int[] array) {
-    for (int i = 0; i < array.length - 1; i++) {
-      if (array[i] > array[i + 1]) { return false; }
-    }
-    return true;
-  }
+
 
 }
