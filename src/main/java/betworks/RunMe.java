@@ -4,47 +4,36 @@ import betworks.utils.FileHandler;
 import betworks.utils.NumberUtils;
 import java.io.IOException;
 
-public class RunMe {
+public final class RunMe {
 
-  private static FileHandler fileHandler;
-  private static int STREAM_SIZE = 1000000;
+  private final int streamSize;
+  private FileHandler fileHandler;
 
-  RunMe() {
-
+  RunMe(final int streamSize) {
+    this.streamSize = streamSize;
   }
 
   public static void main(String[] args) {
-    fileHandler = new FileHandler(System.getProperty("user.dir") + "\\1.txt", STREAM_SIZE);
+    RunMe runMe = new RunMe(1000000);
+    runMe.sort();
+  }
 
-    System.out.println();
+  void sort() {
+
+    fileHandler = new FileHandler(System.getProperty("user.dir") + "\\unsorted.txt", NumberUtils.getRandomIntegers(streamSize));
+
     long startTime = System.nanoTime();
-    /*try {
-      fileHandler.writeFile(1000000);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }*/
-    /*    try {
-      fileHandler.writeFileBuffered(1000000);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }*/
     try {
-      fileHandler.concurrentWriteBuffered(4);
+      fileHandler.writeFileBuffered();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    /*try {
-      fileHandler.concurrentWrite(4);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }*/
     long endTime = System.nanoTime();
     long durationMS = (endTime - startTime) / 1000000;
-    System.out.println("write " + durationMS);
+    System.out.println("write unsorted " + durationMS);
 
     startTime = System.nanoTime();
     int[] array = fileHandler.readFile();
-
     endTime = System.nanoTime();
     durationMS = (endTime - startTime) / 1000000;
     System.out.println("read " + durationMS);
@@ -56,6 +45,16 @@ public class RunMe {
     durationMS = (endTime - startTime) / 1000000;
     System.out.println("sort " + durationMS);
 
+    FileHandler fileHandler2 = new FileHandler(System.getProperty("user.dir") + "\\sorted.txt", array);
+    startTime = System.nanoTime();
+    try {
+      fileHandler2.writeFileBuffered();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    endTime = System.nanoTime();
+    durationMS = (endTime - startTime) / 1000000;
+    System.out.println("write sorted " + durationMS);
   }
 
 }

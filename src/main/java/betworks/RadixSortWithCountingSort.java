@@ -24,7 +24,7 @@ public final class RadixSortWithCountingSort {
     return unsorted;
   }
 
-  int[] rebuildArraywithPrefixSum(int[] count, int array[], int power) {
+  int[] rebuildArraywithPrefixSum(final int[] count, final int array[], final int power) {
     int[] result = new int[array.length];
     for (int i = array.length - 1; i >= 0; i--) {
       int index = --count[(array[i] / (power)) % 10];

@@ -13,15 +13,15 @@ This question is meant to allow us to gauge your level of skill and understandin
 * into the question with a level of depth and detail you’re comfortable with. Creating code that compiles and directly answers the questions asked
 * is the minimum requirement.
 * */
-public class NumberUtils {
+public final class NumberUtils {
 
-  public static int[] getRandomIntegers(int streamSize) {
+  public static int[] getRandomIntegers(final int streamSize) {
     Random r = new Random();
     IntStream instream = r.ints(streamSize, 0, Integer.MAX_VALUE);
     return instream.toArray();
   }
 
-  public static int[] getPrefixSums(int[] count) {
+  public static int[] getPrefixSums(final int[] count) {
     if (count.length != 10) { throw new InvalidParameterException("message"); }
     for (int i = 0; i < 9; i++) {
       count[i + 1] = count[i] + count[i + 1];
@@ -29,7 +29,7 @@ public class NumberUtils {
     return count;
   }
 
-  public static boolean checkNumbersAscending(int[] array) {
+  public static boolean checkNumbersAscending(final int[] array) {
     for (int i = 0; i < array.length - 1; i++) {
       if (array[i] > array[i + 1]) { return false; }
     }
