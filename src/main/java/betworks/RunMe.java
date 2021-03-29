@@ -28,7 +28,7 @@ public class RunMe {
     } catch (IOException e) {
       e.printStackTrace();
     }*/
-         try {
+    try {
       fileHandler.concurrentWriteBuffered(4);
     } catch (IOException e) {
       e.printStackTrace();
@@ -39,21 +39,21 @@ public class RunMe {
       e.printStackTrace();
     }*/
     long endTime = System.nanoTime();
-    long durationMS = (endTime - startTime)/1000000;
-    System.out.println("write "+durationMS);
+    long durationMS = (endTime - startTime) / 1000000;
+    System.out.println("write " + durationMS);
 
     startTime = System.nanoTime();
     int[] array = fileHandler.readFile();
-    //String str = boss.runTasks();
+
     endTime = System.nanoTime();
-    durationMS = (endTime - startTime)/1000000;
+    durationMS = (endTime - startTime) / 1000000;
     System.out.println("read " + durationMS);
 
     startTime = System.nanoTime();
     array = new RadixSortWithCountingSort(array).radixSort();
     System.out.println("correctly sorted? " + NumberUtils.checkNumbersAscending(array));
     endTime = System.nanoTime();
-    durationMS = (endTime - startTime)/1000000;
+    durationMS = (endTime - startTime) / 1000000;
     System.out.println("sort " + durationMS);
 
   }

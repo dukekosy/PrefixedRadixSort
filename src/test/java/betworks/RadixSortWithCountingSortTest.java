@@ -1,9 +1,7 @@
 package betworks;
 
-import java.security.InvalidParameterException;
-import java.util.Arrays;
-
 import betworks.utils.NumberUtils;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +43,5 @@ public class RadixSortWithCountingSortTest {
     radixSortWithCountingSort = new RadixSortWithCountingSort(array);
     Assert.assertTrue(NumberUtils.checkNumbersAscending(radixSortWithCountingSort.radixSort()));
   }
-
-
 
 }

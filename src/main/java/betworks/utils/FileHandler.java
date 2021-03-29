@@ -29,7 +29,6 @@ public class FileHandler {
         String string = br.readLine();
         if (string != null) {
           try {array[i] = Integer.parseInt(string); } catch (Exception ex) {
-            //System.out.println(string);
           }
         }
       }
@@ -86,8 +85,6 @@ public class FileHandler {
       for (int i = 0; i < threadCount; i++) {
 
         runners[i] = new Thread(() -> {
-          //need synchronized block to prevent
-          //race condition between isEmpty and remove
           try {
             writeFileBuffered(streamSize / threadCount, writer);
           } catch (IOException e) {
@@ -113,8 +110,6 @@ public class FileHandler {
     for (int i = 0; i < threadCount; i++) {
 
       runners[i] = new Thread(() -> {
-        //need synchronized block to prevent
-        //race condition between isEmpty and remove
         try {
           writeFile(streamSize / threadCount, writer);
         } catch (IOException e) {
